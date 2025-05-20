@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Você chegou!</title>
+  <style>
+    body {
+      background-color: #fceabb;
+      background-image: linear-gradient(315deg, #fceabb 0%, #f8b500 74%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 3em;
+      animation: popIn 1s ease-out;
+    }
+
+    #positionText {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+
+    .emoji {
+      font-size: 80px;
+      display: inline-block;
+      animation: dance 0.5s infinite alternate ease-in-out;
+      margin-top: 30px;
+    }
+
+    @keyframes dance {
+      from { transform: rotate(-15deg) scale(1); }
+      to   { transform: rotate(15deg) scale(1.1); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .fireworks {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      background-image: url('https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif');
+      background-size: cover;
+      opacity: 0.3;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="fireworks"></div>
+  <h1>🎉 Parabéns! 🎉</h1>
+  <p id="positionText">Verificando sua posição...</p>
+  <div class="emoji">🕺</div>
+
+  <script>
+    // Simula contador usando o navegador do usuário
+    let count = localStorage.getItem("visitCount");
+
+    if (!count) {
+      count = 1;
+    } else {
+      count = parseInt(count) + 1;
+    }
+
+    localStorage.setItem("visitCount", count);
+
+    const message = `Você é o visitante número ${count}! 🏁`;
+    document.getElementById("positionText").textContent = message;
+  </script>
+</body>
+</html>
